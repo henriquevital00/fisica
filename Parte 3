@@ -1,0 +1,38 @@
+import math
+def comp_onda():
+  print("O átomo de hidrogênio se encontra em estado fundamental.")
+  
+  comp_onda = float(input("Digite o comprimento de onda:"))
+
+  if comp_onda < 1e-9:
+    print("Digite um comprimento de onda maior, esse fóton irá ionizar o átomo de hidrogênio.")
+  
+  E = (4,136e-15*3e8)/comp_onda
+
+  n = math.sqrt(-13,6/E)
+
+  a = round(n,0)
+
+  if a > n-0.1 and a < n+0.1:
+    print("O n final é:", a)
+  else:
+    print("O átomo de hidrogênio não absorve um fóton com esse comprimento de onda.")
+
+#########################################################
+
+def main():
+  while True:
+    print("")
+    print("1. Comprimento de onda pelo usuário.")
+    print("")
+
+    op = int(input("Opção: "))
+    print("")
+
+    if op == 1:
+      comp_onda()
+    
+    else:
+      break
+
+main()

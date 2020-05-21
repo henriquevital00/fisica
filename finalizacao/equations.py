@@ -148,8 +148,8 @@ class Equations(Constants):
         n_inteiro_mais_1 = int(n_inteiro + 0.1)
         n_inteiro = int(n_inteiro)
 
-        print("n: {}".format(n))
-        print("n_inteiro: {}".format(n_inteiro))
+        # print("n: {}".format(n))
+        # print("n_inteiro: {}".format(n_inteiro))
 
         if ionizou:
             print("Digite um comprimento de onda maior, esse fóton irá ionizar o átomo de hidrogênio.")
@@ -160,7 +160,7 @@ class Equations(Constants):
             print("O átomo de hidrogênio não absorve o fóton com comprimento de onda dado.")
 
         else:
-            print("n_inteiro_mais_1: {}".format(n_inteiro_mais_1))
+            # print("n_inteiro_mais_1: {}".format(n_inteiro_mais_1))
 
             if n_inteiro_mais_1 > n_inteiro:
                 n_inteiro = n_inteiro_mais_1
@@ -229,9 +229,9 @@ class Equations(Constants):
         # delta = energia_inicial - energia_final
         # n² = -13.6 / -delta
 
-        print("Ei = {}\nEf = {}".format(energia_inicial, energia_final))
+        # print("Ei = {}\nEf = {}".format(energia_inicial, energia_final))
         delta = energia_final - energia_inicial
-        print("delta: {} eV".format(delta))
+        # print("delta: {} eV".format(delta))
 
         if delta > 0:
             ionizou = True
@@ -239,8 +239,8 @@ class Equations(Constants):
         elif delta < 0:
             delta *= -1
 
-        n = sqrt((-13.6/-delta))
-       # print("nivel: {}".format(n))
+        n = sqrt((-13.6 / -delta))
+        # print("nivel: {}".format(n))
 
         return n, ionizou
 

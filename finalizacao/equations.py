@@ -278,21 +278,21 @@ class Equations(Constants):
             indice = 0
         elif comprimento > limites[4]:
             # print("if2")
-            indice = 4
+            indice = 5
         else:
             # print("else")
             if limites[0] <= comprimento < limites[1]:
                 # print("if3")
-                indice = 0
+                indice = 1
             elif limites[1] <= comprimento < limites[2]:
                 # print("if4")
-                indice = 1
+                indice = 2
             elif limites[2] <= comprimento < limites[3]:
                 # print("if5")
-                indice = 2
+                indice = 3
             elif limites[3] <= comprimento <= limites[4]:
                 # print("if6")
-                indice = 3
+                indice = 4
 
         # print("indice: {}".format(indice))
 

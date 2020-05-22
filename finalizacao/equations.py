@@ -35,9 +35,9 @@ class Equations(Constants):
 
             "Escolha a opção desejada:\n"
             "0- Voltar\n"
-            "1- Calcular o raio da órbita\n"
-            "2- Calcular a energia cinética do elétron\n"
-            "3- Calcular a energia potencial do elétron\n"
+            "1- Calcular o raio da órbita do elétron\n"
+            "2- Calcular a energia cinética do átomo de hidrogênio\n",
+            "3- Calcular a energia potencial do átomo de hidrogênio\n",
             "4- Calcular a energia total do átomo de hidrogênio\n",
 
             "Escolha a opção desejada:\n"
@@ -80,14 +80,15 @@ class Equations(Constants):
             if op == 0:
                 self.runloop = False
                 print("...Tenha um bom dia!")
+
             else:
                 self.estadoAtual = op
 
         elif self.estadoAtual == 1:  # Menu com as questões da aula 1
-
             if op == 0:
                 self.estadoAtual = 0
                 print()
+
             else:
                 n = self.get_numero_quantico(1, "")
 
@@ -133,12 +134,10 @@ class Equations(Constants):
                 print()
                 print("Comprimento de onda do elétron durante a transição é {} m".format(comprimento))
 
-                if self.nivelAtual == 2:
-                    cor = self.get_cor_da_onda(comprimento)
-                    print("Cor do elétron durante a a transição é {}".format(cor))
+                cor = self.get_cor_da_onda(comprimento)
+                print("Cor do elétron durante a a transição é {}".format(cor))
 
         elif self.estadoAtual == 3:  # Menu com as questões da aula 3
-
             if op == 0:
                 self.estadoAtual = 0
             else:
@@ -153,9 +152,6 @@ class Equations(Constants):
         n_inteiro_mais_1 = int(n_inteiro + 0.1)
         n_inteiro = int(n_inteiro)
 
-        # print("n: {}".format(n))
-        # print("n_inteiro: {}".format(n_inteiro))
-
         if ionizou:
             print("Digite um comprimento de onda maior, esse fóton irá ionizar o átomo de hidrogênio.")
             print()
@@ -165,14 +161,10 @@ class Equations(Constants):
             print("O átomo de hidrogênio não absorve o fóton com comprimento de onda dado.")
 
         else:
-            # print("n_inteiro_mais_1: {}".format(n_inteiro_mais_1))
-
             if n_inteiro_mais_1 > n_inteiro:
                 n_inteiro = n_inteiro_mais_1
             else:
                 n_inteiro = int(n_inteiro)
-
-            # print("n_inteiro_after: {}".format(n_inteiro))
 
             print("O átomo de hidrogênio absorve o fóton e vai para o nível {}".format(
                 n_inteiro), end=" ")
@@ -198,7 +190,6 @@ class Equations(Constants):
         return n
 
     def get_entrada_comprimento(self):
-        # "Digite o comprimento de onda do fóton que se aproxima do átomo de hidrogênio: "
         loop = True
         comprimento = 1
 
@@ -224,19 +215,16 @@ class Equations(Constants):
     def calcular_energia_pelo_comprimento(self, comprimento):
         # En = (h*c) / comprimento
         En = (((self.planck_constant / self.elementary_charge) * 3e8) / comprimento)
-        # En = (((6.626e-34 / 1.602e-19) * self.light_speed) / comprimento)
-        # ("energia: {} eV".format(En))
+
         return En
 
     def get_nivel_quantico(self, energia_final, energia_inicial):
-        ionizou = False
-
         # delta = energia_inicial - energia_final
         # n² = -13.6 / -delta
 
-        # print("Ei = {}\nEf = {}".format(energia_inicial, energia_final))
         delta = energia_final - energia_inicial
-        # print("delta: {} eV".format(delta))
+
+        ionizou = False
 
         if delta > 0:
             ionizou = True
@@ -245,7 +233,6 @@ class Equations(Constants):
             delta *= -1
 
         n = sqrt((-13.6 / -delta))
-        # print("nivel: {}".format(n))
 
         return n, ionizou
 
@@ -274,43 +261,39 @@ class Equations(Constants):
 
         indice = 0
         if comprimento < limites[0]:
-            # print("if1")
             indice = 0
-        elif comprimento > limites[4]:
-            # print("if2")
-            indice = 5
-        else:
-            # print("else")
-            if limites[0] <= comprimento < limites[1]:
-                # print("if3")
-                indice = 1
-            elif limites[1] <= comprimento < limites[2]:
-                # print("if4")
-                indice = 2
-            elif limites[2] <= comprimento < limites[3]:
-                # print("if5")
-                indice = 3
-            elif limites[3] <= comprimento <= limites[4]:
-                # print("if6")
-                indice = 4
 
-        # print("indice: {}".format(indice))
+        elif comprimento > limites[4]:
+            indice = 5
+
+        else:
+            if limites[0] <= comprimento < limites[1]:
+                indice = 1
+
+            elif limites[1] <= comprimento < limites[2]:
+                indice = 2
+
+            elif limites[2] <= comprimento < limites[3]:
+                indice = 3
+
+            elif limites[3] <= comprimento <= limites[4]:
+                indice = 4
 
         return cores[indice]
 
     def raio_orbita(self, n):
         self.rn = self.electric_constant * ((pow(n, 2) * pow(self.planck_constant, 2)) / (
                 pi * self.electron_mass * pow(self.elementary_charge, 2)))
-        print("Raio: {}".format(self.rn))
+        print("Raio: {} m".format(self.rn))
 
     def enrgia_cinetica_eletron(self, n):
         self.Kn = 13.60 / pow(n, 2)
-        print("Energia cinetica do elétron: {}".format(self.Kn))
+        print("Energia cinetica do elétron: {} eV".format(self.Kn))
 
     def energia_potencial_eletron(self, n):
         self.Un = -27.20 / pow(n, 2)
-        print("Energia potencial do elétron: {}".format(self.Un))
+        print("Energia potencial do elétron: {} eV".format(self.Un))
 
     def energia_total_eletron(self, n):
         self.En = -13.60 / pow(n, 2)
-        print("Energia total do elétron: {}".format(self.En))
+        print("Energia total do elétron: {} eV".format(self.En))

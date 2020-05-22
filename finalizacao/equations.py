@@ -11,6 +11,7 @@ class Equations(Constants):
         self.Kn = 0
         self.Un = 0
         self.En = 0
+        self.nivelAtual = 1
         self.estadoAtual = 0
         self.series_niveis = {
             1: " - (Série de Lyman)",
@@ -111,11 +112,13 @@ class Equations(Constants):
 
                 if 1 <= op <= 5:
                     limite = op + 1
+                    self.nivelAtual = op
                     n_inicial = self.get_numero_quantico(limite, "inicial")
                     n_final = op
                 else:
                     n_inicial = self.get_numero_quantico(1, "inicial")
                     n_final = self.get_numero_quantico(1, "final")
+                    self.nivelAtual = n_final
 
                     if n_inicial > n_final:
                         temp = n_inicial
@@ -127,10 +130,12 @@ class Equations(Constants):
                 if comprimento < 0:
                     comprimento *= -1
 
-                cor = self.get_cor_da_onda(comprimento)
                 print()
                 print("Comprimento de onda do elétron durante a transição é {} m".format(comprimento))
-                print("Cor do elétron durante a a transição é {}".format(cor))
+
+                if self.nivelAtual == 2:
+                    cor = self.get_cor_da_onda(comprimento)
+                    print("Cor do elétron durante a a transição é {}".format(cor))
 
         elif self.estadoAtual == 3:  # Menu com as questões da aula 3
 
@@ -273,21 +278,21 @@ class Equations(Constants):
             indice = 0
         elif comprimento > limites[4]:
             # print("if2")
-            indice = 5
+            indice = 4
         else:
             # print("else")
             if limites[0] <= comprimento < limites[1]:
                 # print("if3")
-                indice = 1
+                indice = 0
             elif limites[1] <= comprimento < limites[2]:
                 # print("if4")
-                indice = 2
+                indice = 1
             elif limites[2] <= comprimento < limites[3]:
                 # print("if5")
-                indice = 3
+                indice = 2
             elif limites[3] <= comprimento <= limites[4]:
                 # print("if6")
-                indice = 4
+                indice = 3
 
         # print("indice: {}".format(indice))
 

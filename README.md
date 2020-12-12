@@ -2,7 +2,7 @@
 
 This repository is a physics calculator to calculate:
 
-* energy and radius of the hydrogen atom
+* Energy and radius of the hydrogen atom
 * Lyman, Balmr, Paschen, Brackett and Pfund serie
 * Absorption or emission of a photon by a hydrogen atom
 
